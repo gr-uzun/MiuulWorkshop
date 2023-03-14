@@ -23,19 +23,13 @@ def write_to_postgres(**kwargs):
         for filename in filenames:
             table_name = filename.lower().replace('-', '_').split(".")[0]
             print(table_name)
-            df = pd.read_csv(os.path.join(dirname, filename), encoding='latin-1')
+            if table_name == "uber_raw_data_janjune_15":
+                df = pd.read_csv(os.path.join(dirname, filename), encoding='latin-1', low_memory=True, nrows=1000000)
+            else:
+                df = pd.read_csv(os.path.join(dirname, filename), encoding='latin-1', low_memory=True)
             df.dropna(inplace=True, axis=1)
+            df.to_sql(name=table_name, con=kwargs['engine'], if_exists='replace')
             print(df.head())
-            try:
-                df.to_sql(name=table_name, con=kwargs['engine'], if_exists='replace')
-            except:
-                for i in range(0, len(df), 10000):
-                    if i == 0:
-                        df.loc[i: i + 10000].to_sql(name=table_name, con=kwargs['engine'],
-                                                    if_exists='replace')
-                    else:
-                        df.loc[i: i + 10000].to_sql(name=table_name, con=kwargs['engine'],
-                                                    if_exists='append')
 
 
 yesterday_date = datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d')
