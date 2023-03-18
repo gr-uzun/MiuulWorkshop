@@ -1,4 +1,10 @@
-# Setup Airflow with Docker
+# This Repo was created for the Miuul Workshop Event
+
+- 01_install_kaggle: Downloads the Kaggle library.
+- 02_download_data: Downloads datasets with the Kaggle API.
+- 03_write_to_database: Writes data to the database.
+
+## Setup Airflow with Docker
 
 Note: If Docker is not installed, please
 visit [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
@@ -19,27 +25,25 @@ Expected output:
 
 ![01_docker_compose_ps](images/01_docker_compose_ps.png)
 
-# Airflow UI
+## Airflow UI
 
 Go to [Airflow UI](http://localhost:9090/login/?next=http%3A%2F%2Flocalhost%3A9090%2Fhome).
 
 Username: admin
 Password: admin
 
-# Connect to PostgreSQL Database
+## Connect to PostgreSQL Database
 
 docker-compose up postgres
 
-* username: airflow
-* password: airflow
-* host: localhost
-* port: 5433
-* database: postgres
+- username: airflow
+- password: airflow
+- host: localhost
+- port: 5433
+- database: postgres
 
 _`url: 'postgresql+psycopg2://airflow:airflow@localhost:5433/postgres'`_
 
-# Data Source
+## Data Source
 
 [Uber Pickups in New York City](https://www.kaggle.com/datasets/fivethirtyeight/uber-pickups-in-new-york-city)
-
-
