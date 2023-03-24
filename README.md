@@ -1,8 +1,6 @@
 # This Repo was created for the Miuul Workshop Event
 
-- 01_install_kaggle: Downloads the Kaggle library.
-- 02_download_data: Downloads datasets with the Kaggle API.
-- 03_write_to_database: Writes data to the database.
+![architecture](images/architecture.png)
 
 ## Setup Airflow with Docker
 
