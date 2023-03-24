@@ -1,5 +1,7 @@
 # This Repo was created for the Miuul Workshop Event
 
+## Architecture
+
 ![architecture](images/architecture.png)
 
 ## Setup Airflow and PostgreSQL with Docker
