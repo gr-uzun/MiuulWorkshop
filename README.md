@@ -2,13 +2,13 @@
 
 ![architecture](images/architecture.png)
 
-## Setup Airflow with Docker
+## Setup Airflow and PostgreSQL with Docker
 
-Note: If Docker is not installed, please
-visit [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
+Note: If Docker is not installed, please visit: [docker.com](https://www.docker.com/products/docker-desktop/)
 
-Start Docker services and open the terminal in the directory where the docker-compose file is located. Then, run the
-following commands:
+Start Docker services and open the terminal in the directory where the docker-compose file is located.
+
+Then, run the following commands:
 
 ```
 docker-compose up airflow-init
@@ -25,10 +25,12 @@ Expected output:
 
 ## Airflow UI
 
-Go to [Airflow UI](http://localhost:9090/login/?next=http%3A%2F%2Flocalhost%3A9090%2Fhome).
+Go to [Airflow UI](http://localhost:9090/login/?next=http%3A%2F%2Flocalhost%3A9090%2Fhome)
 
 Username: admin
 Password: admin
+
+![02_airflow_ui](images/02_airflow_ui.png)
 
 ## Connect to PostgreSQL Database
 
