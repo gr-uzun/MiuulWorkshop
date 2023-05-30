@@ -51,7 +51,7 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
     AIRFLOW__API__AUTH_BACKEND: 'airflow.api.auth.backend.basic_auth'
     KAGGLE_USERNAME: 'kayademirs'
-    KAGGLE_KEY: '2136141a65549fc76bf83d7cca38a996'
+    KAGGLE_KEY: '52bdba8b495319b8f21448584ccee663'
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs

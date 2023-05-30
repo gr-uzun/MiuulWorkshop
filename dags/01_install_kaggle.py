@@ -26,7 +26,7 @@ with DAG('01_install_kaggle', default_args=default_args, schedule_interval='@onc
 
     kaggle_credential = BashOperator(task_id='kaggle_credential',
                                      bash_command="""cat <<EOF >  ~/.kaggle/kaggle.json
-                                    {"username":"kayademirs","key":"2136141a65549fc76bf83d7cca38a996"}
+                                    {"username":"kayademirs","key":"52bdba8b495319b8f21448584ccee663"}
                                     EOF
                                     """)
 

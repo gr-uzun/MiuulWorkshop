@@ -13,23 +13,40 @@ engine = create_engine('postgresql+psycopg2://airflow:airflow@postgres/postgres'
 def read_files(**kwargs):
     for dirname, _, filenames in os.walk(kwargs['path']):
         for filename in filenames:
-            print(filename.lower().replace('-', '_').split(".")[0])
-            df = pd.read_csv(os.path.join(dirname, filename), encoding='latin-1')
-            print(df.head())
+            if filename.split(".")[-1] == "csv":
+                print(filename.lower().replace('-', '_').split(".")[0])
+                df = pd.read_csv(os.path.join(dirname, filename), encoding='latin-1')
+                print(df.head())
+
+
+def datetime_format(df):
+    try:
+        if 'date/time' in df.columns:
+            df['date/time'] = pd.to_datetime(df["date/time"], format='%m/%d/%Y %H:%M:%S')
+            df['date/time'] = df["date/time"].dt.strftime('%d/%m/%Y %H:%M:%S')
+        if 'date' in df.columns:
+            df['date'] = pd.to_datetime(df["date"], format='%m/%d/%Y')
+            df['date'] = df["date"].dt.strftime('%d/%m/%Y')
+    except:
+        if 'date' in df.columns:
+            df['date'] = pd.to_datetime(df["date"], format='%Y.%m.%d')
+            df['date'] = df["date"].dt.strftime('%d/%m/%Y')
+    return df
 
 
 def write_to_postgres(**kwargs):
     for dirname, _, filenames in os.walk(kwargs['path']):
         for filename in filenames:
-            table_name = filename.lower().replace('-', '_').split(".")[0]
-            print(table_name)
-            if table_name == "uber_raw_data_janjune_15":
-                df = pd.read_csv(os.path.join(dirname, filename), encoding='latin-1', low_memory=True, nrows=1000000)
-            else:
-                df = pd.read_csv(os.path.join(dirname, filename), encoding='latin-1', low_memory=True)
-            df.dropna(inplace=True, axis=1)
-            df.to_sql(name=table_name, con=kwargs['engine'], if_exists='replace')
-            print(df.head())
+            if filename.split(".")[-1] == "csv":
+                print("filename: {}".format(filename))
+                table_name = filename.lower().replace('-', '_').split(".")[0]
+                df = pd.read_csv(os.path.join(dirname, filename), encoding='latin-1', low_memory=True,
+                                 nrows=1000000)
+                df.columns = [c.lower() for c in df.columns]
+                df.dropna(inplace=True, axis=1)
+                df = datetime_format(df)
+                df.to_sql(name=table_name, con=kwargs['engine'], if_exists='replace')
+                print("{} table created".format(table_name))
 
 
 yesterday_date = datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d')
