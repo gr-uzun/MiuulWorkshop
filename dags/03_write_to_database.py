@@ -15,7 +15,8 @@ def read_files(**kwargs):
         for filename in filenames:
             if filename.split(".")[-1] == "csv":
                 print(filename.lower().replace('-', '_').split(".")[0])
-                df = pd.read_csv(os.path.join(dirname, filename), encoding='latin-1')
+                df = pd.read_csv(os.path.join(dirname, filename), encoding='latin-1', low_memory=True,
+                                 nrows=1000)
                 print(df.head())
 
 
@@ -41,7 +42,7 @@ def write_to_postgres(**kwargs):
                 print("filename: {}".format(filename))
                 table_name = filename.lower().replace('-', '_').split(".")[0]
                 df = pd.read_csv(os.path.join(dirname, filename), encoding='latin-1', low_memory=True,
-                                 nrows=1000000)
+                                 nrows=100000)
                 df.columns = [c.lower() for c in df.columns]
                 df.dropna(inplace=True, axis=1)
                 df = datetime_format(df)
