@@ -13,9 +13,7 @@ Start Docker services and open the terminal in the directory where the docker-co
 Then, run the following commands:
 
 ```
-docker-compose up airflow-init
-
-docker-compose up -d
+docker-compose up -d --build
 
 docker-compose ps
 
@@ -29,8 +27,8 @@ Expected output:
 
 Go to [Airflow UI](http://localhost:9090/login/?next=http%3A%2F%2Flocalhost%3A9090%2Fhome)
 
-Username: admin
-Password: admin
+* Username: airflow
+* Password: airflow
 
 ![02_airflow_ui](images/02_airflow_ui.png)
 
