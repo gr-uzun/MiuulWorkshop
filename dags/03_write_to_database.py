@@ -48,6 +48,7 @@ def write_to_postgres(**kwargs):
                 df = datetime_format(df)
                 df.to_sql(name=table_name, con=kwargs['engine'], if_exists='replace')
                 print("{} table created".format(table_name))
+    print("############################## Data Transfer is successful! ###############################".upper())
 
 
 yesterday_date = datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d')
