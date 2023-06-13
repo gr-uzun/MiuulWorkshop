@@ -46,5 +46,5 @@ _`url: 'postgresql+psycopg2://airflow:airflow@localhost:5433/postgres'`_
 
 ## Data Source
 
-[Uber Pickups in New York City](https://www.kaggle.com/datasets/fivethirtyeight/uber-pickups-in-new-york-city)
-[https://www.kaggle.com/datasets/ravi72munde/uber-lyft-cab-prices](https://www.kaggle.com/datasets/ravi72munde/uber-lyft-cab-prices)
+* [Uber Pickups in New York City](https://www.kaggle.com/datasets/fivethirtyeight/uber-pickups-in-new-york-city)
+* [https://www.kaggle.com/datasets/ravi72munde/uber-lyft-cab-prices](https://www.kaggle.com/datasets/ravi72munde/uber-lyft-cab-prices)
